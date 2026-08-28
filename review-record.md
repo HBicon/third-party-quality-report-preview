@@ -64,3 +64,11 @@
 | 2026-08-28 | 1440px 桌面与 390px 窄屏渲染、页面级溢出和控制台错误 | 通过；无页面级横向溢出，无控制台警告或错误 |
 
 以上仅为原型自身可用性验证，不构成 Gate 2 方案通过证据。
+
+## 公网发布记录
+
+| 日期 | 发布环境 | 公网地址 | 仓库 | 首发提交 | 发布范围 |
+|---|---|---|---|---|---|
+| 2026-08-28 | GitHub Pages | https://hbicon.github.io/third-party-quality-report-preview/ | https://github.com/HBicon/third-party-quality-report-preview | `e925fa3` | 脱敏 Gate 2 原型、Proposal、评审记录 |
+
+公网发布只提供方案评审入口，不改变 Gate 2 待确认状态，也不代表进入研发执行。
