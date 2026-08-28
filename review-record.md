@@ -69,8 +69,9 @@
 
 ## 公网发布记录
 
-| 日期 | 发布环境 | 公网地址 | 仓库 | 首发提交 | 发布范围 |
+| 日期 | 发布环境 | 公网地址 | 仓库 | 发布提交 | 发布范围 |
 |---|---|---|---|---|---|
 | 2026-08-28 | GitHub Pages | https://hbicon.github.io/third-party-quality-report-preview/ | https://github.com/HBicon/third-party-quality-report-preview | `e925fa3` | 脱敏 Gate 2 原型、Proposal、评审记录 |
+| 2026-08-28 | GitHub Pages 样式修订 | https://hbicon.github.io/third-party-quality-report-preview/ | https://github.com/HBicon/third-party-quality-report-preview | `67271d5` | 产品大师统一原型样式、状态化评审说明与 `?screen=` 场景地址 |
 
 公网发布只提供方案评审入口，不改变 Gate 2 待确认状态，也不代表进入研发执行。
