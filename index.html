@@ -5,61 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="三方原始质检报告展示 Gate 2 可交互原型">
   <title>三方原始质检报告展示｜Gate 2 原型</title>
-  <link rel="stylesheet" href="./assets/prototype.css">
+  <link rel="stylesheet" href="assets/prototype.css">
 </head>
 <body>
   <a class="skip-link" href="#prototype-main">跳到原型内容</a>
 
   <header class="proto-topbar">
     <div class="proto-brand">
-      <span class="brand-mark" aria-hidden="true">质检</span>
-      <span>三方原始质检报告展示</span>
-    </div>
-    <div class="proto-meta" aria-label="文档信息">
-      <span>REQ-20260828-001</span>
-      <span>v0.3.0</span>
-      <span class="status-badge review">Gate 2 待评审</span>
-      <span class="status-badge demo">脱敏演示数据</span>
+      <span class="brand-mark" aria-hidden="true">QR</span>
+      <span class="brand-copy">
+        <strong>三方原始质检报告</strong>
+        <small>REQ-20260828-001 · v0.3.0 产品评审</small>
+      </span>
     </div>
     <nav class="proto-actions" aria-label="相关材料">
-      <a href="./proposal.md">查看 Proposal</a>
-      <a href="./review-record.md">评审记录</a>
+      <a href="proposal.md">← 项目总说明</a>
+      <span class="status-badge demo">脱敏演示数据</span>
+      <span class="status-badge review">Gate 2 待评审</span>
     </nav>
   </header>
 
   <div class="proto-layout">
     <aside class="scene-sidebar" aria-label="原型场景导航">
-      <div class="sidebar-heading">
-        <h2>评审场景</h2>
-        <span>7 个关键状态</span>
+      <div class="sidebar-heading">业务场景</div>
+      <nav class="scene-nav">
+        <button class="scene-button active" type="button" data-scene-target="pc-report">
+          <span class="scene-number">1</span><span>PC 原报告默认</span>
+        </button>
+        <button class="scene-button" type="button" data-scene-target="pc-fallback">
+          <span class="scene-number">2</span><span>PC 缺失降级</span>
+        </button>
+        <button class="scene-button" type="button" data-scene-target="app-report">
+          <span class="scene-number">3</span><span>App 原报告默认</span>
+        </button>
+        <button class="scene-button" type="button" data-scene-target="app-fallback">
+          <span class="scene-number">4</span><span>App 缺失降级</span>
+        </button>
+        <button class="scene-button" type="button" data-scene-target="admin-list">
+          <span class="scene-number">5</span><span>来源配置列表</span>
+        </button>
+        <button class="scene-button" type="button" data-scene-target="admin-change">
+          <span class="scene-number">6</span><span>开关确认</span>
+        </button>
+        <button class="scene-button" type="button" data-scene-target="admin-readonly">
+          <span class="scene-number">7</span><span>只读权限</span>
+        </button>
+      </nav>
+      <div class="sidebar-summary">
+        买家端：PC + App<br>
+        管理端：按订单来源配置
       </div>
-
-      <p class="scene-group-label">买家 PC</p>
-      <button class="scene-button active" type="button" data-scene-target="pc-report">
-        <span class="scene-number">01</span><span><strong>原报告默认</strong><small>支持切换平台报告</small></span>
-      </button>
-      <button class="scene-button" type="button" data-scene-target="pc-fallback">
-        <span class="scene-number">02</span><span><strong>缺失降级</strong><small>报价保持可用</small></span>
-      </button>
-
-      <p class="scene-group-label">买家 App</p>
-      <button class="scene-button" type="button" data-scene-target="app-report">
-        <span class="scene-number">03</span><span><strong>原报告默认</strong><small>移动端切换</small></span>
-      </button>
-      <button class="scene-button" type="button" data-scene-target="app-fallback">
-        <span class="scene-number">04</span><span><strong>缺失降级</strong><small>底部报价可用</small></span>
-      </button>
-
-      <p class="scene-group-label">Boss 后台</p>
-      <button class="scene-button" type="button" data-scene-target="admin-list">
-        <span class="scene-number">05</span><span><strong>来源配置列表</strong><small>按订单来源配置</small></span>
-      </button>
-      <button class="scene-button" type="button" data-scene-target="admin-change">
-        <span class="scene-number">06</span><span><strong>开关确认</strong><small>说明生效边界</small></span>
-      </button>
-      <button class="scene-button" type="button" data-scene-target="admin-readonly">
-        <span class="scene-number">07</span><span><strong>只读权限</strong><small>查看与编辑分离</small></span>
-      </button>
     </aside>
 
     <main class="prototype-stage" id="prototype-main">
@@ -312,14 +307,20 @@
       </section>
     </main>
 
-    <aside class="review-notes" aria-label="当前场景评审旁注">
-      <div class="notes-heading"><p>评审旁注</p><h2 id="note-title">01 · PC 原报告默认</h2></div>
-      <ol id="note-list"></ol>
-      <div class="gate-card">
-        <strong>当前门禁</strong>
-        <p>Gate 1 已通过，当前只评审可见交互与关键状态。</p>
-        <span>确认后才进入 Spec 与测试用例阶段。</span>
+    <aside class="review-notes" aria-label="评审说明">
+      <div class="review-label">评审说明</div>
+      <h2 class="review-heading" id="note-title">PC 原报告默认</h2>
+      <div class="review-meta">
+        <div>REQ-20260828-001 · v0.3.0 · Gate 2 方案评审</div>
+        <div class="review-focus" id="review-focus"></div>
+        <div class="review-progress" id="review-progress"></div>
+        <div class="review-legend" aria-label="评审状态说明">
+          <span class="confirmed">已明确</span>
+          <span class="pending">待确认</span>
+          <span class="blocking">阻断项</span>
+        </div>
       </div>
+      <div class="note-list" id="note-list"></div>
     </aside>
   </div>
 
@@ -339,6 +340,6 @@
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-  <script src="./assets/prototype.js"></script>
+  <script src="assets/prototype.js"></script>
 </body>
 </html>
