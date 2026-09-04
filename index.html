@@ -5,21 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="三方原始质检报告展示 Gate 2 可交互原型">
   <title>三方原始质检报告展示｜Gate 2 原型</title>
-  <link rel="stylesheet" href="assets/prototype.css">
+  <link rel="stylesheet" href="assets/prototype.css?v=0.4.0">
 </head>
 <body>
   <a class="skip-link" href="#prototype-main">跳到原型内容</a>
 
   <header class="proto-topbar">
     <div class="proto-brand">
-      <span class="brand-mark" aria-hidden="true">QR</span>
+      <span class="brand-mark" aria-hidden="true">检</span>
       <span class="brand-copy">
         <strong>三方原始质检报告</strong>
-        <small>REQ-20260828-001 · v0.3.0 产品评审</small>
+        <small>REQ-20260828-001 · v0.4.0 · Owner 待指定</small>
       </span>
     </div>
     <nav class="proto-actions" aria-label="相关材料">
-      <a href="proposal.md">← 项目总说明</a>
+      <a href="https://github.com/HBicon/third-party-quality-report-preview">查看项目仓库</a>
       <span class="status-badge demo">脱敏演示数据</span>
       <span class="status-badge review">Gate 2 待评审</span>
     </nav>
@@ -27,7 +27,7 @@
 
   <div class="proto-layout">
     <aside class="scene-sidebar" aria-label="原型场景导航">
-      <div class="sidebar-heading">业务场景</div>
+      <div class="sidebar-heading">评审场景</div>
       <nav class="scene-nav">
         <button class="scene-button active" type="button" data-scene-target="pc-report">
           <span class="scene-number">1</span><span>PC 原报告默认</span>
@@ -52,8 +52,9 @@
         </button>
       </nav>
       <div class="sidebar-summary">
-        买家端：PC + App<br>
-        管理端：按订单来源配置
+        <strong>评审范围</strong>
+        <span>买家端：PC + App</span>
+        <span>管理端：按订单来源配置</span>
       </div>
     </aside>
 
@@ -308,19 +309,24 @@
     </main>
 
     <aside class="review-notes" aria-label="评审说明">
-      <div class="review-label">评审说明</div>
+      <div class="review-label">Gate 2 方案评审</div>
       <h2 class="review-heading" id="note-title">PC 原报告默认</h2>
-      <div class="review-meta">
-        <div>REQ-20260828-001 · v0.3.0 · Gate 2 方案评审</div>
-        <div class="review-focus" id="review-focus"></div>
-        <div class="review-progress" id="review-progress"></div>
-        <div class="review-legend" aria-label="评审状态说明">
-          <span class="confirmed">已明确</span>
-          <span class="pending">待确认</span>
-          <span class="blocking">阻断项</span>
-        </div>
+      <p class="review-focus" id="review-focus">确认原始报告默认展示、报告切换和报价输入保持是否符合买家报价流程。</p>
+      <div class="review-gate" aria-label="当前评审门禁">
+        <div><span>当前状态</span><strong>待评审</strong></div>
+        <p>Gate 1 范围已确认，本轮仅确认交互方案。</p>
       </div>
-      <div class="note-list" id="note-list"></div>
+      <div class="review-legend" aria-label="评审状态说明">
+        <span class="confirmed">已确认规则</span>
+        <span class="pending">本轮待确认</span>
+      </div>
+      <ol class="note-list" id="note-list"></ol>
+      <div class="review-rule">
+        <strong>全局业务规则</strong>
+        <p>来源开关在订单进入平台时判断并固化，只影响后续订单。</p>
+        <p>有效原报告默认展示且可切换映射报告；原报告不可用时自动降级，报价不中断。</p>
+        <p>PC 与 App 使用同一资格和报告数据；页面均为脱敏演示，不连接真实接口。</p>
+      </div>
     </aside>
   </div>
 
@@ -340,6 +346,6 @@
   </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-  <script src="assets/prototype.js"></script>
+  <script src="assets/prototype.js?v=0.4.0"></script>
 </body>
 </html>
