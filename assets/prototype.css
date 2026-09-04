@@ -1692,7 +1692,7 @@ dialog::backdrop {
   }
 
   .scene-nav {
-    min-width: 1040px;
+    min-width: 500px;
     display: flex;
   }
 

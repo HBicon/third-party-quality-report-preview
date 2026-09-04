@@ -4,59 +4,6 @@
   }
 
   const sceneInfo = {
-    'pc-report': {
-      kicker: '买家 PC',
-      title: '订单详情 · 原始报告默认展示',
-      subtitle: '命中展示资格且原始 JSON 可用，默认展示三方原始报告。',
-      viewport: 'PC 界面',
-      noteTitle: 'PC 原报告默认',
-      focus: '确认原始报告默认展示、报告切换和报价输入保持是否符合买家报价流程。',
-      notes: [
-        note('订单级展示资格', '来源开关开启且订单进入平台时命中资格，并存在有效原始 JSON；资格一经固化不随配置变化。'),
-        note('原报告默认，可切换映射报告', '页面默认展示三方原始报告；切换只替换报告内容，不刷新订单详情。'),
-        note('原始字段通用呈现', '建议保留三方字段名、分组、顺序和原值，不再做二次映射或归一化。', 'pending'),
-        note('报价输入保持', '报告仅作为报价参考，切换报告不清空金额与备注，提交仍沿用现有流程。', 'pending')
-      ]
-    },
-    'pc-fallback': {
-      kicker: '买家 PC',
-      title: '订单详情 · 原始报告缺失降级',
-      subtitle: '已命中展示资格但原始报告未取到，自动展示平台映射报告。',
-      viewport: 'PC 界面',
-      noteTitle: 'PC 缺失降级',
-      focus: '仅评审与默认态不同的降级提示、报告入口和报价状态。',
-      notes: [
-        note('仅命中资格后触发', '原始 JSON 缺失、为空或不可读时进入降级；未命中资格的订单保持现有体验，不展示异常提示。'),
-        note('直接展示平台映射报告', '不展示空白或不可点击的原报告标签，只说明当前已自动降级，不暴露内部错误。', 'pending'),
-        note('报价能力保持可用', '金额、备注和提交按钮均保持可用，不新增报价前置校验。')
-      ]
-    },
-    'app-report': {
-      kicker: '买家 App',
-      title: '订单详情 · 原始报告默认展示',
-      subtitle: 'App 与 PC 使用相同展示资格，报告字段改为单列浏览。',
-      viewport: 'App 界面',
-      noteTitle: 'App 原报告默认',
-      focus: 'PC 通用规则不重复，仅评审移动端布局与操作可达性。',
-      notes: [
-        note('与 PC 共用业务结果', '同一订单不因查看端变化而重新计算资格，默认报告与降级结果保持一致。'),
-        note('报告字段单列浏览', '报告按三方分组纵向展开，长字段随页面滚动，不横向压缩。', 'pending'),
-        note('底部报价入口持续可达', '报告较长或发生切换时，“立即报价”仍固定在手机页面底部。', 'pending')
-      ]
-    },
-    'app-fallback': {
-      kicker: '买家 App',
-      title: '订单详情 · 原始报告缺失降级',
-      subtitle: 'App 自动展示平台映射报告，底部报价按钮持续可用。',
-      viewport: 'App 界面',
-      noteTitle: 'App 缺失降级',
-      focus: '仅评审 App 降级态与 PC 降级态的布局差异。',
-      notes: [
-        note('自动呈现平台报告', '进入页面即完成降级，不要求买家手动选择，也不展示不可用切换项。', 'pending'),
-        note('提示压缩为结果说明', '只告知已展示平台映射报告且不影响报价，不显示接口或 JSON 错误。', 'pending'),
-        note('立即报价保持可用', '底部按钮沿用现有流程，不增加确认或强制阅读。')
-      ]
-    },
     'admin-list': {
       kicker: 'Boss 后台',
       title: '原始报告展示配置 · 来源列表',
@@ -113,11 +60,11 @@
 
   function getSceneFromUrl() {
     const requestedScene = new URL(window.location.href).searchParams.get('screen');
-    return sceneNames.has(requestedScene) ? requestedScene : 'pc-report';
+    return sceneNames.has(requestedScene) ? requestedScene : 'admin-list';
   }
 
   function showScene(name, options = {}) {
-    const resolvedName = sceneInfo[name] ? name : 'pc-report';
+    const resolvedName = sceneInfo[name] ? name : 'admin-list';
     const info = sceneInfo[resolvedName];
 
     scenes.forEach((scene) => {
@@ -170,25 +117,6 @@
 
   window.addEventListener('popstate', () => showScene(getSceneFromUrl(), { updateUrl: false }));
 
-  document.querySelectorAll('.quality-section').forEach((section) => {
-    const buttons = Array.from(section.querySelectorAll('[data-report-view]'));
-    const panels = Array.from(section.querySelectorAll('[data-report-panel]'));
-
-    buttons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const view = button.dataset.reportView;
-        buttons.forEach((item) => {
-          const active = item.dataset.reportView === view;
-          item.classList.toggle('active', active);
-          item.setAttribute('aria-selected', String(active));
-        });
-        panels.forEach((panel) => {
-          panel.hidden = panel.dataset.reportPanel !== view;
-        });
-      });
-    });
-  });
-
   function openDialog(id) {
     const dialog = document.getElementById(id);
     if (dialog && typeof dialog.showModal === 'function') dialog.showModal();
@@ -207,10 +135,6 @@
     dialog.addEventListener('click', (event) => {
       if (event.target === dialog) dialog.close();
     });
-  });
-
-  document.querySelectorAll('[data-submit-quote]').forEach((button) => {
-    button.addEventListener('click', () => openDialog('quote-dialog'));
   });
 
   const toast = document.getElementById('toast');

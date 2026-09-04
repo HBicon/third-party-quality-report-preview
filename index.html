@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="三方原始质检报告展示 Gate 2 可交互原型">
   <title>三方原始质检报告展示｜Gate 2 原型</title>
-  <link rel="stylesheet" href="assets/prototype.css?v=0.4.0">
+  <link rel="stylesheet" href="assets/prototype.css?v=0.4.1">
 </head>
 <body>
   <a class="skip-link" href="#prototype-main">跳到原型内容</a>
@@ -15,7 +15,7 @@
       <span class="brand-mark" aria-hidden="true">检</span>
       <span class="brand-copy">
         <strong>三方原始质检报告</strong>
-        <small>REQ-20260828-001 · v0.4.0 · Owner 待指定</small>
+        <small>REQ-20260828-001 · v0.4.1 · Owner 待指定</small>
       </span>
     </div>
     <nav class="proto-actions" aria-label="相关材料">
@@ -29,221 +29,34 @@
     <aside class="scene-sidebar" aria-label="原型场景导航">
       <div class="sidebar-heading">评审场景</div>
       <nav class="scene-nav">
-        <button class="scene-button active" type="button" data-scene-target="pc-report">
-          <span class="scene-number">1</span><span>PC 原报告默认</span>
-        </button>
-        <button class="scene-button" type="button" data-scene-target="pc-fallback">
-          <span class="scene-number">2</span><span>PC 缺失降级</span>
-        </button>
-        <button class="scene-button" type="button" data-scene-target="app-report">
-          <span class="scene-number">3</span><span>App 原报告默认</span>
-        </button>
-        <button class="scene-button" type="button" data-scene-target="app-fallback">
-          <span class="scene-number">4</span><span>App 缺失降级</span>
-        </button>
-        <button class="scene-button" type="button" data-scene-target="admin-list">
-          <span class="scene-number">5</span><span>来源配置列表</span>
+        <button class="scene-button active" type="button" data-scene-target="admin-list">
+          <span class="scene-number">1</span><span>来源配置列表</span>
         </button>
         <button class="scene-button" type="button" data-scene-target="admin-change">
-          <span class="scene-number">6</span><span>开关确认</span>
+          <span class="scene-number">2</span><span>开关确认</span>
         </button>
         <button class="scene-button" type="button" data-scene-target="admin-readonly">
-          <span class="scene-number">7</span><span>只读权限</span>
+          <span class="scene-number">3</span><span>只读权限</span>
         </button>
       </nav>
       <div class="sidebar-summary">
         <strong>评审范围</strong>
-        <span>买家端：PC + App</span>
-        <span>管理端：按订单来源配置</span>
+        <span>本轮：后台配置菜单</span>
+        <span>买家端：现有页面不变</span>
       </div>
     </aside>
 
     <main class="prototype-stage" id="prototype-main">
       <div class="stage-toolbar">
         <div>
-          <p class="stage-kicker" id="stage-kicker">买家 PC</p>
-          <h1 id="stage-title">订单详情 · 原始报告默认展示</h1>
-          <p id="stage-subtitle">命中展示资格且原始 JSON 可用，默认展示三方原始报告。</p>
+          <p class="stage-kicker" id="stage-kicker">Boss 后台</p>
+          <h1 id="stage-title">原始报告展示配置 · 来源列表</h1>
+          <p id="stage-subtitle">菜单路径：业务配置 > 三方平台管理 > 原始报告展示配置。</p>
         </div>
-        <span class="viewport-label" id="viewport-label">PC 界面</span>
+        <span class="viewport-label" id="viewport-label">后台界面</span>
       </div>
 
-      <section class="proto-scene" data-scene="pc-report">
-        <div class="buyer-shell">
-          <header class="product-header">
-            <strong>买家报价台</strong>
-            <nav aria-label="买家报价台导航"><span>待报价</span><span class="active">订单详情</span><span>报价记录</span></nav>
-            <span class="account-name">华东优品回收 · 报价员</span>
-          </header>
-
-          <div class="order-heading">
-            <div><span class="back-symbol" aria-hidden="true">‹</span><strong>订单 O-20260828-0316</strong><span class="pill success">待报价</span></div>
-            <span class="countdown">报价剩余 08:42</span>
-          </div>
-
-          <div class="buyer-grid">
-            <div class="buyer-content">
-              <section class="device-card">
-                <div class="device-thumb" aria-hidden="true"><span></span></div>
-                <div>
-                  <h2>Apple iPhone 14 Pro 256GB</h2>
-                  <p>深空黑 · 国行 · 已过保</p>
-                  <dl class="inline-facts">
-                    <div><dt>订单来源</dt><dd>机大侠</dd></div>
-                    <div><dt>入平台时间</dt><dd>2026-08-28 15:06:12</dd></div>
-                    <div><dt>IMEI</dt><dd>**** 4821</dd></div>
-                  </dl>
-                </div>
-              </section>
-
-              <section class="quality-section">
-                <div class="section-title-row">
-                  <div><h3>质检报告</h3><p>三方原始报告为默认报价依据</p></div>
-                  <div class="report-tabs" role="tablist" aria-label="PC 质检报告类型">
-                    <button class="report-tab active" type="button" role="tab" aria-selected="true" data-report-view="original">三方原始报告</button>
-                    <button class="report-tab" type="button" role="tab" aria-selected="false" data-report-view="mapped">平台映射报告</button>
-                  </div>
-                </div>
-
-                <div class="report-panel" data-report-panel="original" role="tabpanel">
-                  <div class="report-source-line"><span class="source-mark">原</span><div><strong>机大侠原始质检报告</strong><p>按三方 JSON 字段名称、分组和顺序展示</p></div><span class="field-count">12 项</span></div>
-                  <div class="report-group">
-                    <h4>外观检测</h4>
-                    <dl class="report-fields">
-                      <div><dt>屏幕显示</dt><dd>正常，无漏液</dd></div>
-                      <div><dt>屏幕玻璃</dt><dd>3 处轻微划痕</dd></div>
-                      <div><dt>中框边角</dt><dd>右下角小磕碰</dd></div>
-                      <div><dt>后盖状态</dt><dd>轻微使用痕迹</dd></div>
-                    </dl>
-                  </div>
-                  <div class="report-group">
-                    <h4>功能检测</h4>
-                    <dl class="report-fields">
-                      <div><dt>Face ID</dt><dd>正常</dd></div>
-                      <div><dt>原彩显示</dt><dd>正常</dd></div>
-                      <div><dt>摄像头防抖</dt><dd>轻微抖动</dd></div>
-                      <div><dt>拆修情况</dt><dd>更换过电池</dd></div>
-                    </dl>
-                  </div>
-                </div>
-
-                <div class="report-panel" data-report-panel="mapped" role="tabpanel" hidden>
-                  <div class="report-source-line mapped"><span class="source-mark">平</span><div><strong>平台映射报告</strong><p>沿用平台标准质检选项</p></div><span class="field-count">4 项</span></div>
-                  <div class="info-banner">部分三方专有检测项无法一一映射，可切回原始报告查看完整信息。</div>
-                  <div class="report-group">
-                    <h4>平台标准质检项</h4>
-                    <dl class="report-fields">
-                      <div><dt>屏幕外观</dt><dd>轻微划痕</dd></div>
-                      <div><dt>机身外观</dt><dd>轻微磕碰</dd></div>
-                      <div><dt>面容识别</dt><dd>正常</dd></div>
-                      <div><dt>维修情况</dt><dd>有维修</dd></div>
-                    </dl>
-                  </div>
-                </div>
-              </section>
-            </div>
-
-            <aside class="quote-panel">
-              <h3>提交报价</h3>
-              <label for="pc-quote-amount">报价金额</label>
-              <div class="amount-input"><input id="pc-quote-amount" type="number" min="0" placeholder="请输入报价"><span>元</span></div>
-              <label for="pc-quote-note">报价备注</label>
-              <textarea id="pc-quote-note" maxlength="100" placeholder="选填，最多 100 字"></textarea>
-              <p class="quote-tip">切换报告不会清空已填写的报价内容。</p>
-              <button class="primary-button full" type="button" data-submit-quote>提交报价</button>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="proto-scene" data-scene="pc-fallback" hidden>
-        <div class="buyer-shell">
-          <header class="product-header">
-            <strong>买家报价台</strong>
-            <nav aria-label="买家报价台导航"><span>待报价</span><span class="active">订单详情</span><span>报价记录</span></nav>
-            <span class="account-name">华东优品回收 · 报价员</span>
-          </header>
-          <div class="order-heading">
-            <div><span class="back-symbol" aria-hidden="true">‹</span><strong>订单 O-20260828-0320</strong><span class="pill success">待报价</span></div>
-            <span class="countdown">报价剩余 12:18</span>
-          </div>
-          <div class="buyer-grid">
-            <div class="buyer-content">
-              <section class="device-card compact">
-                <div class="device-thumb" aria-hidden="true"><span></span></div>
-                <div><h2>HUAWEI Mate 60 Pro 512GB</h2><p>雅川青 · 国行 · 在保</p><dl class="inline-facts"><div><dt>订单来源</dt><dd>繁星</dd></div><div><dt>入平台时间</dt><dd>2026-08-28 15:18:09</dd></div></dl></div>
-              </section>
-              <section class="quality-section">
-                <div class="section-title-row"><div><h3>质检报告</h3><p>已自动展示可用报告</p></div><span class="pill neutral">平台映射报告</span></div>
-                <div class="warning-banner"><strong>三方原始报告暂未获取</strong><span>已为你展示平台映射报告，不影响继续报价。</span></div>
-                <div class="report-group">
-                  <h4>平台标准质检项</h4>
-                  <dl class="report-fields">
-                    <div><dt>屏幕外观</dt><dd>完好</dd></div>
-                    <div><dt>机身外观</dt><dd>轻微使用痕迹</dd></div>
-                    <div><dt>账户状态</dt><dd>已退出</dd></div>
-                    <div><dt>维修情况</dt><dd>无维修</dd></div>
-                  </dl>
-                </div>
-              </section>
-            </div>
-            <aside class="quote-panel">
-              <h3>提交报价</h3>
-              <label for="pc-fallback-amount">报价金额</label>
-              <div class="amount-input"><input id="pc-fallback-amount" type="number" min="0" placeholder="请输入报价"><span>元</span></div>
-              <label for="pc-fallback-note">报价备注</label>
-              <textarea id="pc-fallback-note" maxlength="100" placeholder="选填，最多 100 字"></textarea>
-              <p class="quote-tip">原始报告缺失不新增报价限制。</p>
-              <button class="primary-button full" type="button" data-submit-quote>提交报价</button>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <section class="proto-scene mobile-scene" data-scene="app-report" hidden>
-        <div class="phone-frame">
-          <div class="phone-status"><span>9:41</span><span>5G&nbsp;&nbsp;92%</span></div>
-          <header class="mobile-header"><button type="button" aria-label="返回">‹</button><strong>订单详情</strong><button type="button" aria-label="更多操作">•••</button></header>
-          <div class="mobile-scroll">
-            <section class="mobile-order-summary">
-              <div><strong>Apple iPhone 14 Pro</strong><span class="pill success">待报价</span></div>
-              <p>256GB · 深空黑 · 国行</p>
-              <dl><div><dt>订单来源</dt><dd>机大侠</dd></div><div><dt>入平台时间</dt><dd>2026-08-28 15:06</dd></div></dl>
-            </section>
-            <section class="mobile-report quality-section">
-              <h2>质检报告</h2>
-              <div class="report-tabs mobile" role="tablist" aria-label="App 质检报告类型">
-                <button class="report-tab active" type="button" role="tab" aria-selected="true" data-report-view="original">三方原始报告</button>
-                <button class="report-tab" type="button" role="tab" aria-selected="false" data-report-view="mapped">平台映射报告</button>
-              </div>
-              <div class="report-panel" data-report-panel="original" role="tabpanel">
-                <div class="mobile-source"><span class="source-mark">原</span><div><strong>机大侠原始质检报告</strong><small>按三方字段展示 · 12 项</small></div></div>
-                <div class="mobile-field-group"><h3>外观检测</h3><dl><div><dt>屏幕显示</dt><dd>正常，无漏液</dd></div><div><dt>屏幕玻璃</dt><dd>3 处轻微划痕</dd></div><div><dt>中框边角</dt><dd>右下角小磕碰</dd></div><div><dt>后盖状态</dt><dd>轻微使用痕迹</dd></div></dl></div>
-                <div class="mobile-field-group"><h3>功能检测</h3><dl><div><dt>Face ID</dt><dd>正常</dd></div><div><dt>摄像头防抖</dt><dd>轻微抖动</dd></div><div><dt>拆修情况</dt><dd>更换过电池</dd></div></dl></div>
-              </div>
-              <div class="report-panel" data-report-panel="mapped" role="tabpanel" hidden>
-                <div class="info-banner">部分三方专有项未映射，可切回原始报告查看。</div>
-                <div class="mobile-field-group"><h3>平台标准质检项</h3><dl><div><dt>屏幕外观</dt><dd>轻微划痕</dd></div><div><dt>机身外观</dt><dd>轻微磕碰</dd></div><div><dt>面容识别</dt><dd>正常</dd></div><div><dt>维修情况</dt><dd>有维修</dd></div></dl></div>
-              </div>
-            </section>
-          </div>
-          <div class="mobile-quote-bar"><div><small>报价剩余</small><strong>08:42</strong></div><button class="primary-button" type="button" data-submit-quote>立即报价</button></div>
-        </div>
-      </section>
-
-      <section class="proto-scene mobile-scene" data-scene="app-fallback" hidden>
-        <div class="phone-frame">
-          <div class="phone-status"><span>9:41</span><span>5G&nbsp;&nbsp;88%</span></div>
-          <header class="mobile-header"><button type="button" aria-label="返回">‹</button><strong>订单详情</strong><button type="button" aria-label="更多操作">•••</button></header>
-          <div class="mobile-scroll">
-            <section class="mobile-order-summary"><div><strong>HUAWEI Mate 60 Pro</strong><span class="pill success">待报价</span></div><p>512GB · 雅川青 · 国行</p><dl><div><dt>订单来源</dt><dd>繁星</dd></div><div><dt>入平台时间</dt><dd>2026-08-28 15:18</dd></div></dl></section>
-            <section class="mobile-report"><h2>质检报告</h2><div class="warning-banner"><strong>三方原始报告暂未获取</strong><span>已展示平台映射报告，不影响报价。</span></div><div class="mobile-field-group"><h3>平台标准质检项</h3><dl><div><dt>屏幕外观</dt><dd>完好</dd></div><div><dt>机身外观</dt><dd>轻微使用痕迹</dd></div><div><dt>账户状态</dt><dd>已退出</dd></div><div><dt>维修情况</dt><dd>无维修</dd></div></dl></div></section>
-          </div>
-          <div class="mobile-quote-bar"><div><small>报价剩余</small><strong>12:18</strong></div><button class="primary-button" type="button" data-submit-quote>立即报价</button></div>
-        </div>
-      </section>
-
-      <section class="proto-scene" data-scene="admin-list" hidden>
+      <section class="proto-scene" data-scene="admin-list">
         <div class="admin-shell">
           <aside class="admin-nav"><strong>Boss 管理后台</strong><span>业务概览</span><span>订单管理</span><span class="parent active">业务配置</span><span class="child active">三方平台管理</span><span class="child">报价规则</span></aside>
           <div class="admin-main">
@@ -310,8 +123,8 @@
 
     <aside class="review-notes" aria-label="评审说明">
       <div class="review-label">Gate 2 方案评审</div>
-      <h2 class="review-heading" id="note-title">PC 原报告默认</h2>
-      <p class="review-focus" id="review-focus">确认原始报告默认展示、报告切换和报价输入保持是否符合买家报价流程。</p>
+      <h2 class="review-heading" id="note-title">来源配置列表</h2>
+      <p class="review-focus" id="review-focus">确认新增菜单中的列表字段、筛选能力和配置入口。</p>
       <div class="review-gate" aria-label="当前评审门禁">
         <div><span>当前状态</span><strong>待评审</strong></div>
         <p>Gate 1 范围已确认，本轮仅确认交互方案。</p>
@@ -324,8 +137,9 @@
       <div class="review-rule">
         <strong>全局业务规则</strong>
         <p>来源开关在订单进入平台时判断并固化，只影响后续订单。</p>
-        <p>有效原报告默认展示且可切换映射报告；原报告不可用时自动降级，报价不中断。</p>
-        <p>PC 与 App 使用同一资格和报告数据；页面均为脱敏演示，不连接真实接口。</p>
+        <p>买家 PC/App 沿用现有订单详情页面，本原型不展示或评审前端页面。</p>
+        <p>有效原报告按既有页面承载；原报告不可用时沿用平台映射报告，报价不中断。</p>
+        <p>页面使用脱敏演示数据，不连接真实接口，也不修改生产配置。</p>
       </div>
     </aside>
   </div>
@@ -339,13 +153,7 @@
     <div class="dialog-actions"><button class="secondary-button" type="button" data-close-dialog="config-confirm-dialog">取消</button><button class="primary-button" type="button" id="confirm-config-change">确认保存</button></div>
   </dialog>
 
-  <dialog id="quote-dialog">
-    <div class="dialog-head"><div><span class="dialog-icon quote" aria-hidden="true">¥</span><div><h2>报价功能演示</h2><p>本原型不提交真实报价</p></div></div><button type="button" aria-label="关闭弹窗" data-close-dialog="quote-dialog">×</button></div>
-    <div class="dialog-body"><p>该按钮在原始报告可用、报告切换及原始报告缺失降级状态下均保持可用。</p></div>
-    <div class="dialog-actions"><button class="primary-button" type="button" data-close-dialog="quote-dialog">知道了</button></div>
-  </dialog>
-
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-  <script src="assets/prototype.js?v=0.4.0"></script>
+  <script src="assets/prototype.js?v=0.4.1"></script>
 </body>
 </html>
